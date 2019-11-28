@@ -11,6 +11,6 @@ public class TestFactory {
 
     @Test
     public void testNotEquals() {
-        Assert.assertTrue(5 == 2 + 2);
+        Assert.assertFalse(5 == 2 + 2);
     }
 }
