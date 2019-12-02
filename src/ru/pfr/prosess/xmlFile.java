@@ -2,7 +2,9 @@ package ru.pfr.prosess;
 
 import org.dom4j.DocumentException;
 
+import javax.xml.stream.XMLStreamException;
 import java.io.File;
+import java.io.IOException;
 
 public class xmlFile implements TypeFile {
     public void getTypeFile(){
@@ -15,9 +17,13 @@ public class xmlFile implements TypeFile {
     }
 
     @Override
-    public void read(String fileName) throws DocumentException {
-        ReadingXMLData readingXMLData= new ReadingXMLData();
+    public void read(String fileName) throws DocumentException, IOException, XMLStreamException {
 
-        readingXMLData.parseWithSAX(new File(fileName));
+        StaxStreamProcessor staxStreamProcessor =new StaxStreamProcessor();
+        staxStreamProcessor.staxLoader();
+//        ReadingXMLData readingXMLData= new ReadingXMLData();
+//
+//        readingXMLData.parseWithSAX(new File(fileName));
+//        System.out.println(readingXMLData.toString());
     }
 }

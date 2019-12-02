@@ -33,7 +33,7 @@ public class zipFile implements TypeFile{
         }
     }
     @Override
-    public void read(){
+    public void read(String fileName){
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream("/home/potterdev/Загрузки/Process_vv_znp001_Заявление о НП ЛК_2018.10.31_типа 9.6.0.zip")))
         {
             ZipEntry entry;

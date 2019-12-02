@@ -18,6 +18,7 @@ public class ReadingXMLData {
     public void parseWithSAX(File aFile) throws DocumentException {
         SAXReader xmlReader = new SAXReader();
         this.doc = xmlReader.read(aFile);
+        System.out.println(this.doc.getRootElement());
     }
 
 }
