@@ -13,7 +13,7 @@ public class StaxStreamProcessor {
     public void staxLoader() throws IOException, XMLStreamException {
 
         String urlString;
-
+        boolean bossTOPfr=false;
         urlString = "file:///D:/IdeaProject/readProcess/in/%D0%9D%D0%92%D0%9F_10_%D0%94%D0%9D%D0%95%D0%99_%D0%9A%D0%A2%D0%9B_3_0_0_2019.09.13/processDefinition.xml";
         System.out.println("Using " + urlString);
 
@@ -40,11 +40,17 @@ public class StaxStreamProcessor {
                     if (name != null) {
                         if (name.equals("Руководитель ТО ПФР")) {
                             System.out.println("namne " + name);
+                            bossTOPfr=true;
 //                            System.out.println("to " + to);
+                        }else {
+                            bossTOPfr=false;
                         }
+                        if (bossTOPfr){
+                            System.out.println("to " + to);
 
-                        System.out.println("to " + to);
+                        }
 //                        System.out.println("dep " + dep);
+
                     }
 //                        if (to.equals("Руководитель ТО ПФР")){
 //                            System.out.println("namne "+name);
