@@ -19,4 +19,5 @@ public class ReadingXMLData {
         SAXReader xmlReader = new SAXReader();
         this.doc = xmlReader.read(aFile);
     }
+
 }

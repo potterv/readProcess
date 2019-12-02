@@ -1,5 +1,7 @@
 package ru.pfr.prosess;
 
+import org.dom4j.DocumentException;
+
 import java.io.File;
 
 public class xmlFile implements TypeFile {
@@ -13,9 +15,9 @@ public class xmlFile implements TypeFile {
     }
 
     @Override
-    public void read(String filename) {
+    public void read(String fileName) throws DocumentException {
         ReadingXMLData readingXMLData= new ReadingXMLData();
 
-        readingXMLData.parseWithSAX(fileName);
+        readingXMLData.parseWithSAX(new File(fileName));
     }
 }
