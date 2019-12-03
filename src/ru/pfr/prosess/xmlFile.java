@@ -12,8 +12,9 @@ public class xmlFile implements TypeFile {
     }
 
     @Override
-    public void write(String filename) {
-
+    public void write(String filename) throws XMLStreamException {
+        StaxStreamWriter staxStreamWriter=new StaxStreamWriter();
+        staxStreamWriter.write();
     }
 
     @Override
