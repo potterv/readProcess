@@ -9,7 +9,7 @@ public interface TypeFile {
     void getTypeFile();
 
 
-    void write(String filename) throws XMLStreamException;
+    void write(String filename) throws XMLStreamException, IOException;
 
     void read(String filename) throws DocumentException, IOException, XMLStreamException;
 }
