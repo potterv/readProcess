@@ -1,17 +1,22 @@
 package ru.pfr.prosess;
 
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class StaxStreamProcessor {
     public void staxLoader() throws IOException, XMLStreamException {
+//        Создание классов для  записи Xml
+        String XHTML_NS="START";
+        XMLOutputFactory f = XMLOutputFactory.newInstance();
+//        XMLStreamWriter w = f.createXMLStreamWriter(System.out);
+        FileWriter fileWriter = new FileWriter("myoutput.xml");
+        XMLStreamWriter w = w = f.createXMLStreamWriter(fileWriter);
 
+
+//        инициализация классов для загрузки xml файла
         String urlString;
         boolean bossTOPfr=false;
         boolean isTransition=false;
@@ -32,9 +37,19 @@ public class StaxStreamProcessor {
         InputStream in = url.openStream();
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLStreamReader parser = factory.createXMLStreamReader(in);
+        parser.standaloneSet();
+        w.writeStartDocument("UTF-8","1.0");
+
+        w.writeCharacters("\n");
+//        w.writeDTD("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+        w.writeCharacters("\n");
+
         while (parser.hasNext()) {
             int event = parser.next();
             if (event == XMLStreamConstants.START_ELEMENT) {
+                w.writeStartElement(parser.getLocalName());
+                w.writeCharacters("\n");
+                System.out.println(parser.getLocalName());
                 if (parser.getLocalName().equals("state") || parser.getLocalName().equals("transition") || parser.getLocalName().equals("dep")) {
                     String name = parser.getAttributeValue(null, "name");
                     String to = parser.getAttributeValue(null, "to");
@@ -83,8 +98,16 @@ public class StaxStreamProcessor {
                     isDep = false;
                 }
             }
+            if (event == XMLStreamConstants.END_ELEMENT) {
+                w.writeEndElement();
 
-        }
+
+            }
+
+
+      }
+        w.writeEndDocument();
+        w.close();
         System.out.println("процесс анализа XML завершен");
     }
 

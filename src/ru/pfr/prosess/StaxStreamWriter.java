@@ -16,7 +16,7 @@ public class StaxStreamWriter {
         XMLStreamWriter w = w = f.createXMLStreamWriter(fileWriter);
         try {
 
-            w.writeStartDocument();
+            w.writeStartDocument("<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\" standalone=\\\"no\\\"?>");
             w.writeCharacters("\n");
             w.writeDTD("<!DOCTYPE html >");
             w.writeCharacters("\n");
