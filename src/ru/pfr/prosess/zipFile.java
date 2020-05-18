@@ -1,5 +1,6 @@
 package ru.pfr.prosess;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.zip.ZipOutputStream;
@@ -8,13 +9,23 @@ import java.util.zip.ZipInputStream;
 
 
 public class zipFile implements TypeFile{
+
+    public zipFile(){
+        this.pathD = new File("").getAbsolutePath();
+    }
+
     public void getTypeFile(){
+
         System.out.println("тип файла zip");
     }
     @Override
-    public void write(String filename){
-        filename = "/home/potterdev/Загрузки/new/processDefinition.xml";
-        try(ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("/home/potterdev/Загрузки/output.zip"));
+    public void write(String dirName){
+
+
+        String filename;
+        System.out.printf(this.pathD);
+        filename = String.join("",this.pathD,"\\in\\dirName\\","processDefinition.xml");
+        try(ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(String.join("",this.pathD,"/out/",dirName,".zip")));
             FileInputStream fis= new FileInputStream(filename);)
         {
             ZipEntry entry1=new ZipEntry("processDefinition.xml");
@@ -34,11 +45,22 @@ public class zipFile implements TypeFile{
     }
     @Override
     public void read(String fileName){
-        try(ZipInputStream zin = new ZipInputStream(new FileInputStream("/home/potterdev/Загрузки/Process_vv_znp001_Заявление о НП ЛК_2018.10.31_типа 9.6.0.zip")))
+        try(ZipInputStream zin = new ZipInputStream(new FileInputStream(String.join("",this.pathD,"\\in\\",fileName))))
         {
             ZipEntry entry;
             String name;
             long size;
+
+            final File dir1 = new File(String.join("",this.pathD,"\\in\\",fileName.substring(0,fileName.length()-4)));
+            if(!dir1.exists()) {
+                if(dir1.mkdir()) {
+                    System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " ycпeшнo coздaн.");
+                }
+                else {
+                    System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " coздвть нe yдaлocь.");
+                }
+            } else { System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " yжe cyщecтвyeт.");
+            }
             while((entry=zin.getNextEntry())!=null){
 
                 name = entry.getName(); // получим название файла
@@ -46,7 +68,11 @@ public class zipFile implements TypeFile{
                 System.out.printf("File name: %s \t File size: %d \n", name, size);
 
                 // распаковка
-                FileOutputStream fout = new FileOutputStream("/home/potterdev/Загрузки/new/" + name);
+
+
+
+
+                FileOutputStream fout = new FileOutputStream(String.join("",this.pathD,"\\in\\",fileName.substring(0,fileName.length()-4),"\\",name));
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
                 }
@@ -60,5 +86,6 @@ public class zipFile implements TypeFile{
             System.out.println(ex.getMessage());
         }
     }
+    private String pathD;
 }
 
