@@ -19,7 +19,7 @@ public class StaxStreamProcessor {
         String XHTML_NS="START";
         XMLOutputFactory f = XMLOutputFactory.newInstance();
 //        XMLStreamWriter w = f.createXMLStreamWriter(System.out);
-        FileWriter fileWriter = new FileWriter(String.join("", this.pathD,"\\out\\processDefinition.xml"));
+        FileWriter fileWriter = new FileWriter(String.join("", this.pathD,"\\in\\_НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13\\processDefinition.xml"));
         XMLStreamWriter w = w = f.createXMLStreamWriter(fileWriter);
 
 

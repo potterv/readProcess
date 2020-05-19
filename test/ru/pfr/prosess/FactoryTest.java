@@ -19,7 +19,7 @@ public class FactoryTest {
         TypeFile typeFile = factory.getCurentTypeFile(file);
         typeFile.getTypeFile();
         try {
-            typeFile.read(String.join("",pathD,"\\НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13\\processDefinition.xml"));
+            typeFile.read(String.join("",pathD,"\\in\\НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13\\processDefinition.xml"));
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (IOException e) {
