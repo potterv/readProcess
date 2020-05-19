@@ -13,13 +13,38 @@ public class FactoryTest {
 
     @Test
     public void getCurentTypeFile() {
-        String file = "xml";
-        String pathD = String.join("",new File("").getAbsolutePath(),"\\readProcess\\in");
+        String file = "zip";
+        String pathD = String.join("",new File("").getAbsolutePath());
         Factory factory = new Factory();
         TypeFile typeFile = factory.getCurentTypeFile(file);
         typeFile.getTypeFile();
         try {
-            typeFile.read(String.join("",pathD,"\\in\\НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13\\processDefinition.xml"));
+            final String PATHDIRIN = String.join("",pathD,"\\in");
+            final String PATHDIROUT = String.join("",pathD,"\\out");
+            final String PATHZIP =String.join("",PATHDIRIN,"\\zip");
+            final String PATHDIR = String.join("",PATHDIRIN,"\\dir");
+            File dirZip = new File(PATHZIP);
+            File[] filesZip = dirZip.listFiles();
+            File dirDir = new File(PATHZIP);
+            File[] filesDir = dirDir.listFiles();
+
+            for (File fileZip: filesZip
+            ) {
+                file = "zip";
+                typeFile = factory.getCurentTypeFile(file);
+                typeFile.read(fileZip.getName());
+
+                file="xml";
+                typeFile = factory.getCurentTypeFile(file);
+                typeFile.read(fileZip.getName().substring(0,fileZip.getName().length()-4));
+
+                file="zip";
+                typeFile = factory.getCurentTypeFile(file);
+                typeFile.write(fileZip.getName().substring(0,fileZip.getName().length()-4));
+                System.out.println(fileZip.getAbsolutePath());
+            }
+
+//            typeFile.read("_НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13");
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (IOException e) {

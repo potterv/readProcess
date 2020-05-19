@@ -3,7 +3,6 @@ package ru.pfr.prosess;
 import org.dom4j.DocumentException;
 
 import javax.xml.stream.XMLStreamException;
-import java.io.File;
 import java.io.IOException;
 
 public class xmlFile implements TypeFile {
@@ -21,6 +20,7 @@ public class xmlFile implements TypeFile {
     public void read(String fileName) throws DocumentException, IOException, XMLStreamException {
 
         StaxStreamProcessor staxStreamProcessor =new StaxStreamProcessor();
+        staxStreamProcessor.setDir(fileName);
         staxStreamProcessor.staxLoader();
 //        ReadingXMLData readingXMLData= new ReadingXMLData();
 //

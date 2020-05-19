@@ -1,13 +1,10 @@
 package ru.pfr.prosess;
 
 
-import org.apache.log4j.Logger;
-
 import javax.xml.stream.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 public class StaxStreamProcessor {
 
@@ -19,7 +16,18 @@ public class StaxStreamProcessor {
         String XHTML_NS="START";
         XMLOutputFactory f = XMLOutputFactory.newInstance();
 //        XMLStreamWriter w = f.createXMLStreamWriter(System.out);
-        FileWriter fileWriter = new FileWriter(String.join("", this.pathD,"\\in\\_НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13\\processDefinition.xml"));
+        final File dir1 = new File(String.join("",this.pathD,"\\in\\temp\\",this.dir));
+        if(!dir1.exists()) {
+            if(dir1.mkdir()) {
+                System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " ycпeшнo coздaн.");
+            }
+            else {
+                System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " coздвть нe yдaлocь.");
+            }
+        } else { System.out.println("Kaтaлoг " + dir1.getAbsolutePath()+ " yжe cyщecтвyeт.");
+        }
+
+        FileWriter fileWriter = new FileWriter(String.join("", this.pathD,"\\in\\temp\\",this.dir,"\\processDefinition.xml"));
         XMLStreamWriter w = w = f.createXMLStreamWriter(fileWriter);
 
 
@@ -30,7 +38,7 @@ public class StaxStreamProcessor {
         boolean isDep=false;
 
 
-        urlString = String.join("","file:///",this.pathD,"/in/","_НВП_10_ДНЕЙ_КТЛ_3_0_0_2019.09.13/processDefinition.xml");
+        urlString = String.join("","file:///",this.pathD,"/in/dir/", this.dir,"/processDefinition.xml");
 
 
 
@@ -156,5 +164,15 @@ public class StaxStreamProcessor {
     }
 
 private String pathD;
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    private String dir;
 //    private static final Logger log = Logger.getLogger(StaxStreamProcessor.class);
 }

@@ -10,5 +10,5 @@ public interface TypeFile {
 
     public void write(String filename) throws XMLStreamException;
 
-    void read(String filename) throws DocumentException, IOException, XMLStreamException;
+    void read(String fileName) throws DocumentException, IOException, XMLStreamException;
 }
