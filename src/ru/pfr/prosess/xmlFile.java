@@ -22,6 +22,8 @@ public class xmlFile implements TypeFile {
         StaxStreamProcessor staxStreamProcessor =new StaxStreamProcessor();
         staxStreamProcessor.setDir(fileName);
         staxStreamProcessor.staxLoader();
+
+
 //        ReadingXMLData readingXMLData= new ReadingXMLData();
 //
 //        readingXMLData.parseWithSAX(new File(fileName));

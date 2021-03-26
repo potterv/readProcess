@@ -18,6 +18,7 @@ public class FactoryTest {
         Factory factory = new Factory();
         TypeFile typeFile = factory.getCurentTypeFile(file);
         typeFile.getTypeFile();
+        WorkFile workFile = new WorkFile();
         try {
             final String PATHDIRIN = String.join("",pathD,"\\in");
             final String PATHDIROUT = String.join("",pathD,"\\out");
@@ -37,6 +38,8 @@ public class FactoryTest {
                 file="xml";
                 typeFile = factory.getCurentTypeFile(file);
                 typeFile.read(fileZip.getName().substring(0,fileZip.getName().length()-4));
+
+
 
                 file="zip";
                 typeFile = factory.getCurentTypeFile(file);
